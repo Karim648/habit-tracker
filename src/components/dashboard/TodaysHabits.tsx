@@ -12,7 +12,7 @@ import { Flame } from "lucide-react";
 
 export default function TodaysHabits() {
   return (
-    <div className="mx-auto w-3/5">
+    <div className="mx-auto w-4/6 min-w-90">
       <Card className="bg-red-100/45">
         <CardHeader>
           <CardTitle className="text-xl text-gray-700">
