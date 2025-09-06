@@ -5,8 +5,14 @@ import Hero from "@/components/landing-page/Hero";
 import SignedOutNav from "@/components/landing-page/SignedOutNav";
 import Stats from "@/components/landing-page/Stats";
 import Testimonials from "@/components/landing-page/Testimonials";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const { userId } = await auth();
+
+  if (userId) redirect("/dashboard");
+
   return (
     <div>
       <SignedOutNav />
