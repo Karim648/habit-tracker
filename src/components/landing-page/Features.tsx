@@ -15,7 +15,7 @@ export default function Features() {
       </div>
 
       <div className="mx-30 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="mb-2 w-min rounded-lg bg-red-200 p-2">
               <Flame className="text-red-700" />
@@ -32,7 +32,7 @@ export default function Features() {
           </CardContent>
         </Card>
 
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="mb-2 w-min rounded-lg bg-red-200 p-2">
               <ChartColumn className="text-red-700" />
@@ -49,7 +49,7 @@ export default function Features() {
           </CardContent>
         </Card>
 
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="mb-2 w-min rounded-lg bg-green-200 p-2">
               <Target className="text-green-700" />

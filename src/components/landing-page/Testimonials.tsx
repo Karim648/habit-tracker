@@ -16,7 +16,7 @@ export default function Testimonials() {
       </div>
 
       <div className="mx-30 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="flex gap-1">
               {fiveStars.map((star) => (
@@ -47,7 +47,7 @@ export default function Testimonials() {
           </CardFooter>
         </Card>
 
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="flex gap-1">
               {fiveStars.map((star) => (
@@ -77,7 +77,7 @@ export default function Testimonials() {
           </CardFooter>
         </Card>
 
-        <Card className="cursor-pointer bg-red-100/45 transition-shadow hover:shadow-lg">
+        <Card className="bg-red-100/45 transition-shadow hover:shadow-lg">
           <CardHeader>
             <div className="flex gap-1">
               {fiveStars.map((star) => (

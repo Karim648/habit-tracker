@@ -18,7 +18,7 @@ export default function PublicNavbar() {
           <Button variant="outline" className="cursor-pointer" asChild>
             <SignInButton />
           </Button>
-          <Button className="cursor-pointer bg-red-700 hover:bg-red-700">
+          <Button className="cursor-pointer bg-red-700 hover:bg-red-800">
             Get Started
           </Button>
         </div>

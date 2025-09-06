@@ -24,7 +24,7 @@ export default function Hero() {
             Start Your journey <MoveRight />
           </Link>
         </Button>
-        <Button variant="outline" className="cursor-pointer hover:bg-pink-500 hover:text-white">
+        <Button variant="outline" className="cursor-pointer hover:bg-pink-700 hover:text-white">
           <Play /> See Demo
         </Button>
       </div>

@@ -13,7 +13,7 @@ export default function DashboardNav() {
       <div className="flex items-center gap-4">
         <Button
           variant="ghost"
-          className="cursor-pointer hover:bg-pink-500 hover:text-white"
+          className="cursor-pointer hover:bg-pink-700 hover:text-white"
           asChild
         >
           <Link href="/profile">
@@ -22,7 +22,7 @@ export default function DashboardNav() {
         </Button>
         <Button
           variant="ghost"
-          className="cursor-pointer hover:bg-pink-500 hover:text-white"
+          className="cursor-pointer hover:bg-pink-700 hover:text-white"
         >
           <Settings /> Settings
         </Button>
