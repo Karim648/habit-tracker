@@ -2,7 +2,7 @@ import { Flame } from "lucide-react";
 import { Button } from "../ui/button";
 import { SignInButton } from "@clerk/nextjs";
 
-export default function SignedOutNav() {
+export default function PublicNavbar() {
   return (
     <header>
       <nav className="flex items-center justify-between border-b border-red-200 p-4">
