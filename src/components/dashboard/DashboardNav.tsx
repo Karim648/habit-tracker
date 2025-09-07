@@ -26,8 +26,10 @@ export default function DashboardNav() {
         >
           <Settings /> Settings
         </Button>
-        <Button className="cursor-pointer bg-red-700 hover:bg-red-800">
-          <Plus /> Add Habit
+        <Button className="cursor-pointer bg-red-700 hover:bg-red-800" asChild>
+          <Link href="/habits/new">
+            <Plus /> Add Habit
+          </Link>
         </Button>
         {/* TODO: remove this user button */}
         <UserButton />

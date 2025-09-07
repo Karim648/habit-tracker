@@ -1,4 +1,5 @@
 import { Categories } from "@/MockData/data";
+import { relations } from "drizzle-orm";
 import {
   boolean,
   index,
@@ -28,6 +29,10 @@ export const UsersTable = pgTable(
   (table) => index("clerk_user_id_index").on(table.clerkUserId),
 );
 
+export const userRelations = relations(UsersTable, ({ many }) => ({
+  habits: many(HabitsTable),
+}));
+
 // every user can have multiple habits but every habit must belong to one user
 
 export const categoryEnum = pgEnum("categories", Categories);
@@ -37,6 +42,16 @@ export const HabitsTable = pgTable("habits", {
   name: varchar("name", { length: 255 }).notNull(),
   category: categoryEnum("category").notNull(),
   isCompleted: boolean("is_completed").notNull().default(false),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => UsersTable.id, { onDelete: "cascade" }),
   createdAt,
   updatedAt,
 });
+
+export const habitRelations = relations(HabitsTable, ({ one }) => ({
+  user: one(UsersTable, {
+    fields: [HabitsTable.userId],
+    references: [UsersTable.id],
+  }),
+}));
