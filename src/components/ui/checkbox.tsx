@@ -23,7 +23,7 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current transition-none"
       >
-        <CheckIcon className="size-3.5 fill-red-700 text-red-700" />
+        <CheckIcon strokeWidth={4} className="size-3.5 text-red-700" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

@@ -4,12 +4,14 @@ import Link from "next/link";
 
 export default function QuickActions() {
   return (
-    <div className="w-2/6">
+    <div>
       <Card className="bg-red-100/45">
         <CardHeader>
-          <CardTitle>Quick Actions</CardTitle>
+          <CardTitle className="text-lg font-semibold text-gray-700">
+            Quick Actions
+          </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-col gap-4">
+        <CardContent className="flex flex-col gap-4 text-gray-700">
           <Link
             href="/habits/new"
             className="flex cursor-pointer items-center gap-4 rounded-lg border px-3 py-1 hover:bg-pink-600 hover:text-white"
