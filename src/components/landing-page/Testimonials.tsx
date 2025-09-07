@@ -37,10 +37,10 @@ export default function Testimonials() {
           <CardFooter className="mt-auto">
             <div className="flex items-center gap-4">
               <div className="rounded-full bg-red-200 p-3 font-semibold text-red-700">
-                SM
+                AR
               </div>
               <div>
-                <p className="font-medium text-gray-700">Sara Mitchell</p>
+                <p className="font-medium text-gray-700">Asap Roffy</p>
                 <p className="text-sm text-gray-600">Fitness Enthusiast</p>
               </div>
             </div>
@@ -67,10 +67,10 @@ export default function Testimonials() {
           <CardFooter className="mt-auto">
             <div className="flex items-center gap-4">
               <div className="rounded-full bg-red-200 p-3 font-semibold text-red-700">
-                DJ
+                JJ
               </div>
               <div>
-                <p className="font-medium text-gray-700">David Johnson</p>
+                <p className="font-medium text-gray-700">Jonieee</p>
                 <p className="text-sm text-gray-600">Entrepreneur</p>
               </div>
             </div>
@@ -97,10 +97,10 @@ export default function Testimonials() {
           <CardFooter className="mt-auto">
             <div className="flex items-center gap-4">
               <div className="rounded-full bg-green-200 p-3 font-semibold text-green-700">
-                EC
+                AS
               </div>
               <div>
-                <p className="font-medium text-gray-700">Emily Chen</p>
+                <p className="font-medium text-gray-700">Salama</p>
                 <p className="text-sm text-gray-600">Student</p>
               </div>
             </div>

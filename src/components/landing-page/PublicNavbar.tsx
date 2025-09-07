@@ -1,6 +1,6 @@
 import { Flame } from "lucide-react";
 import { Button } from "../ui/button";
-import { SignInButton } from "@clerk/nextjs";
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
 export default function PublicNavbar() {
   return (
@@ -18,8 +18,11 @@ export default function PublicNavbar() {
           <Button variant="outline" className="cursor-pointer" asChild>
             <SignInButton />
           </Button>
-          <Button className="cursor-pointer bg-red-700 hover:bg-red-800">
-            Get Started
+          <Button
+            className="cursor-pointer bg-red-700 hover:bg-red-800"
+            asChild
+          >
+            <SignUpButton>Get Started</SignUpButton>
           </Button>
         </div>
       </nav>

@@ -45,3 +45,11 @@ export const habits: Habit[] = [
     id: randomUUID(),
   },
 ] as const;
+
+export const Categories = [
+  "Health",
+  "Fitness",
+  "Personal",
+  "Home",
+  "Social",
+] as const;

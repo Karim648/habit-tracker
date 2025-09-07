@@ -11,7 +11,7 @@ import { Progress } from "../ui/progress";
 export default function StatsOverview() {
   return (
     <div className="grid grid-cols-1 gap-8 px-20 py-10 md:grid-cols-2 lg:grid-cols-4">
-      <Card className="bg-red-100/85 transition-shadow hover:shadow-xl">
+      <Card className="bg-red-100/85">
         <CardHeader>
           <CardTitle className="text-md font-medium text-gray-700">
             Today&apos;s Progress
@@ -27,7 +27,7 @@ export default function StatsOverview() {
         </CardContent>
       </Card>
 
-      <Card className="bg-red-100/85 transition-shadow hover:shadow-xl">
+      <Card className="bg-red-100/85">
         <CardHeader>
           <CardTitle className="text-md font-medium text-gray-700">
             Current Streak
@@ -42,7 +42,7 @@ export default function StatsOverview() {
         </CardContent>
       </Card>
 
-      <Card className="bg-red-100/85 transition-shadow hover:shadow-xl">
+      <Card className="bg-red-100/85">
         <CardHeader>
           <CardTitle className="text-md font-medium text-gray-700">
             Total Streaks
@@ -57,7 +57,7 @@ export default function StatsOverview() {
         </CardContent>
       </Card>
 
-      <Card className="bg-red-100/85 transition-shadow hover:shadow-xl">
+      <Card className="bg-red-100/85">
         <CardHeader>
           <CardTitle className="text-md font-medium text-gray-700">
             This Week

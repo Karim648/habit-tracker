@@ -5,6 +5,8 @@ export default async function Motivation() {
   const res = await fetch("https://stoic.tekloon.net/stoic-quote");
   const quote = await res.json();
 
+  // TODO wrap the quote card with a suspense
+
   return (
     <div className="flex flex-col gap-8">
       <Card className="bg-red-100/45">
