@@ -7,13 +7,14 @@ import {
 } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
-import { Flame } from "lucide-react";
+import { Flame, Target } from "lucide-react";
 import Link from "next/link";
 import { db } from "@/db";
 import { HabitsTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
+import { Button } from "../ui/button";
 
 export default async function TodaysHabits() {
   const { userId } = await auth();
@@ -74,10 +75,23 @@ export default async function TodaysHabits() {
               </Label>
             ))
           ) : (
-            // TODO: go over ui test it out
-            <div>
-              Add a new
-              <Link href="/habits/new">Habit</Link>
+            <div className="flex flex-col items-center justify-center space-y-4 py-8 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-200">
+                <Target className="h-6 w-6 text-red-700" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-700">
+                No habits yet? Time to start.
+              </h3>
+              <p className="text-sm text-gray-500">
+                Create your first habit to begin your journey and track your
+                progress.
+              </p>
+              <Button
+                asChild
+                className="cursor-pointer bg-red-700 hover:bg-red-800"
+              >
+                <Link href="/habits/new">Create a New Habit</Link>
+              </Button>
             </div>
           )}
         </CardContent>

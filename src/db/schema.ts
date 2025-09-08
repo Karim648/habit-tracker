@@ -47,6 +47,7 @@ export const HabitsTable = pgTable("habits", {
   name: varchar("name", { length: 255 }).notNull(),
   description: text(),
   category: categoryEnum("category").notNull(),
+  frequency: frequencyEnum().notNull().default("Daily"),
   isCompleted: boolean("is_completed").notNull().default(false),
   target: integer().notNull().default(1),
   reminder: varchar({ length: 255 }).notNull(),

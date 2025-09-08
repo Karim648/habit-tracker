@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import CategoryGroup from "./CategoryGroup";
-import { createNewHabit, deleteHabit } from "@/app/actions/habits";
+import { createNewHabit, deleteHabit, editHabit } from "@/app/actions/habits";
 import { toast } from "sonner";
 import { InferSelectModel } from "drizzle-orm";
 import { HabitsTable } from "@/db/schema";
@@ -42,7 +42,7 @@ import {
 
 type Habit = InferSelectModel<typeof HabitsTable>;
 
-export default function NewHabitForm({ habit }: { habit?: Habit }) {
+export default function HabitForm({ habit }: { habit?: Habit }) {
   const form = useForm<z.infer<typeof newHabitFormSchema>>({
     resolver: zodResolver(newHabitFormSchema),
     defaultValues: {
@@ -50,16 +50,23 @@ export default function NewHabitForm({ habit }: { habit?: Habit }) {
       description: habit?.description || "",
       target: habit?.target || 1,
       reminder: habit?.reminder || "09:00",
+      category: habit?.category,
+      frequency: habit?.frequency,
     },
   });
 
   async function onSubmit(values: z.infer<typeof newHabitFormSchema>) {
     try {
-      await createNewHabit(values);
-      toast.success("Habit successfully created!");
+      if (!habit) {
+        await createNewHabit(values);
+        toast.success("Habit successfully created!");
+      } else {
+        await editHabit(habit.id, values);
+        toast.success("Habit successfully edited!");
+      }
       console.log("Habit Added Successfully!");
     } catch (error) {
-      toast.error("Failed to create habit");
+      toast.error("Failed to Create habit");
     }
 
     form.reset();

@@ -1,0 +1,1 @@
+ALTER TABLE "habits" ALTER COLUMN "frequency" SET DEFAULT 'Daily';

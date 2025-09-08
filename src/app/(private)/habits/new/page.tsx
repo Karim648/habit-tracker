@@ -1,4 +1,4 @@
-import NewHabitForm from "@/components/forms/NewHabitForm";
+import NewHabitForm from "@/components/forms/HabitForm";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";

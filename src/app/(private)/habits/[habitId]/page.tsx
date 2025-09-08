@@ -1,4 +1,4 @@
-import NewHabitForm from "@/components/forms/NewHabitForm";
+import HabitForm from "@/components/forms/HabitForm";
 import { Button } from "@/components/ui/button";
 import { db } from "@/db";
 import { HabitsTable } from "@/db/schema";
@@ -49,7 +49,7 @@ export default async function HabitPage({
           </div>
         </nav>
       </header>
-      <NewHabitForm habit={habit} />
+      <HabitForm habit={habit} />
     </div>
   );
 }
