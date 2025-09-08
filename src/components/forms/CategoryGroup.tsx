@@ -9,7 +9,7 @@ import { UseFormReturn } from "react-hook-form";
 import z from "zod";
 import { newHabitFormSchema } from "@/form-schemas/new-habit";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Categories } from "@/MockData/data";
+import { Categories } from "@/data/data";
 import { cn } from "@/lib/utils";
 
 export default function CategoryGroup({

@@ -1,4 +1,4 @@
-import { Categories, Frequencies } from "@/MockData/data";
+import { Categories, Frequencies } from "@/data/data";
 import { relations } from "drizzle-orm";
 import {
   boolean,
