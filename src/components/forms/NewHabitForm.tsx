@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
-import { Calendar, Clock, Save, Target } from "lucide-react";
+import { Calendar, Clock, Edit, Save, Target, Trash2 } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -24,25 +24,45 @@ import {
   SelectValue,
 } from "../ui/select";
 import CategoryGroup from "./CategoryGroup";
-import { db } from "@/db";
+import { createNewHabit, deleteHabit } from "@/app/actions/habits";
+import { toast } from "sonner";
+import { InferSelectModel } from "drizzle-orm";
 import { HabitsTable } from "@/db/schema";
-import createNewHabit from "@/app/actions/new-habit";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 
-export default function NewHabitForm() {
+type Habit = InferSelectModel<typeof HabitsTable>;
+
+export default function NewHabitForm({ habit }: { habit?: Habit }) {
   const form = useForm<z.infer<typeof newHabitFormSchema>>({
     resolver: zodResolver(newHabitFormSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      target: 1,
-      reminder: "09:00",
+      name: habit?.name || "",
+      description: habit?.description || "",
+      target: habit?.target || 1,
+      reminder: habit?.reminder || "09:00",
     },
   });
 
   async function onSubmit(values: z.infer<typeof newHabitFormSchema>) {
-    // do form logic
-    await createNewHabit(values);
-    console.log("Habit Added Successfully!");
+    try {
+      await createNewHabit(values);
+      toast.success("Habit successfully created!");
+      console.log("Habit Added Successfully!");
+    } catch (error) {
+      toast.error("Failed to create habit");
+    }
+
+    form.reset();
   }
 
   return (
@@ -164,12 +184,45 @@ export default function NewHabitForm() {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          className="ml-auto flex w-2/6 cursor-pointer bg-red-700 hover:bg-red-800"
-        >
-          Submit
-        </Button>
+        {!habit ? (
+          <Button
+            type="submit"
+            className="ml-auto flex w-2/6 cursor-pointer bg-red-700 hover:bg-red-800"
+          >
+            Submit
+          </Button>
+        ) : (
+          <div className="flex items-center justify-end gap-4">
+            <AlertDialog>
+              <AlertDialogTrigger className="flex cursor-pointer items-center gap-2 font-bold text-red-700">
+                <Trash2 className="h-4 w-4" /> Delete
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete
+                    your account and remove your data from our servers.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel className="cursor-pointer">
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction
+                    className="cursor-pointer bg-red-700 text-white hover:bg-red-800"
+                    onClick={() => deleteHabit(habit.id)}
+                  >
+                    Continue
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+            <Button type="submit" variant="outline" className="cursor-pointer">
+              <Edit /> Edit
+            </Button>
+          </div>
+        )}
       </form>
     </Form>
   );

@@ -45,6 +45,7 @@ export const HabitsTable = pgTable("habits", {
     .notNull()
     .references(() => UsersTable.clerkUserId, { onDelete: "cascade" }),
   name: varchar("name", { length: 255 }).notNull(),
+  description: text(),
   category: categoryEnum("category").notNull(),
   isCompleted: boolean("is_completed").notNull().default(false),
   target: integer().notNull().default(1),
