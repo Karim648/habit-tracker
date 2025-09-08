@@ -51,7 +51,7 @@ export default function HabitForm({ habit }: { habit?: Habit }) {
       target: habit?.target || 1,
       reminder: habit?.reminder || "09:00",
       category: habit?.category,
-      frequency: habit?.frequency,
+      frequency: habit?.frequency || "Daily",
     },
   });
 

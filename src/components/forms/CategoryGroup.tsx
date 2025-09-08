@@ -9,6 +9,8 @@ import { UseFormReturn } from "react-hook-form";
 import z from "zod";
 import { newHabitFormSchema } from "@/form-schemas/new-habit";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Categories } from "@/MockData/data";
+import { cn } from "@/lib/utils";
 
 export default function CategoryGroup({
   form,
@@ -28,51 +30,28 @@ export default function CategoryGroup({
               defaultValue={field.value}
               className="flex w-full flex-wrap justify-around"
             >
-              <FormItem className="flex items-center gap-3">
-                <FormControl>
-                  <RadioGroupItem
-                    value="Health"
-                    className="hidden"
-                  />
-                </FormControl>
-                <FormLabel
-                  className="cursor-pointer rounded-lg border border-gray-400/50 px-3 py-1.5 font-normal hover:bg-red-700 hover:text-white data-[state=checked]:bg-red-700 data-[state=checked]:text-white"
-                >
-                  Health
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-3">
-                <FormControl>
-                  <RadioGroupItem value="Fitness" className="hidden" />
-                </FormControl>
-                <FormLabel className="cursor-pointer rounded-lg border-1 border-gray-400/50 px-3 py-1.5 font-normal hover:bg-red-700 hover:text-white">
-                  Fitness
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-3">
-                <FormControl>
-                  <RadioGroupItem value="Personal" className="hidden" />
-                </FormControl>
-                <FormLabel className="cursor-pointer rounded-lg border-1 border-gray-400/50 px-3 py-1.5 font-normal hover:bg-red-700 hover:text-white">
-                  Personal
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-3">
-                <FormControl>
-                  <RadioGroupItem value="Home" className="hidden" />
-                </FormControl>
-                <FormLabel className="cursor-pointer rounded-lg border-1 border-gray-400/50 px-3 py-1.5 font-normal hover:bg-red-700 hover:text-white">
-                  Home
-                </FormLabel>
-              </FormItem>
-              <FormItem className="flex items-center gap-3">
-                <FormControl>
-                  <RadioGroupItem value="Social" className="hidden" />
-                </FormControl>
-                <FormLabel className="cursor-pointer rounded-lg border-1 border-gray-400/50 px-3 py-1.5 font-normal hover:bg-red-700 hover:text-white">
-                  Social
-                </FormLabel>
-              </FormItem>
+              {Categories.map((category) => {
+                const selected = field.value === category;
+                return (
+                  <FormItem
+                    key={category}
+                    className={cn(
+                      "flex cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 font-normal",
+                      selected
+                        ? "border border-red-700 bg-red-700 text-white"
+                        : "border border-gray-400/50 hover:bg-red-700 hover:text-white",
+                    )}
+                  >
+                    <FormControl>
+                      <RadioGroupItem
+                        value={category}
+                        className="peer absolute h-0 w-0 opacity-0"
+                      />
+                    </FormControl>
+                    <FormLabel className="cursor-pointer">{category}</FormLabel>
+                  </FormItem>
+                );
+              })}
             </RadioGroup>
           </FormControl>
           <FormMessage />
