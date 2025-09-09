@@ -27,9 +27,7 @@ export default async function HabitPage({
       .select()
       .from(HabitsTable)
       .where(and(eq(HabitsTable.id, habitId), eq(HabitsTable.userId, userId)));
-  } catch (error) {
-    // throw new Error("Database query failed");
-  }
+  } catch (error) {}
 
   if (!habit) {
     return (
@@ -49,7 +47,7 @@ export default async function HabitPage({
   }
 
   return (
-    <div className="mb-20">
+    <div>
       <header className="pb-10">
         <nav className="flex items-center gap-6 bg-red-100/85 px-10 py-4">
           <Button
@@ -67,7 +65,9 @@ export default async function HabitPage({
           </div>
         </nav>
       </header>
-      <HabitForm habit={habit} />
+      <div className="mb-20">
+        <HabitForm habit={habit} />
+      </div>
     </div>
   );
 }

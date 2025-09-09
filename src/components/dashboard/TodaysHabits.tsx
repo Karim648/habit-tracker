@@ -7,7 +7,7 @@ import {
 } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Label } from "../ui/label";
-import { Flame, Target } from "lucide-react";
+import { Clock, Flame, Target } from "lucide-react";
 import Link from "next/link";
 import { db } from "@/db";
 import { HabitsTable } from "@/db/schema";
@@ -53,7 +53,10 @@ export default async function TodaysHabits() {
                 key={habit.id}
                 className="flex items-center gap-4 rounded-lg border p-4 hover:bg-red-100/50"
               >
-                <Checkbox className="size-6.5 rounded-full border-2 border-gray-500 data-[state=checked]:border-red-700" />
+                <Checkbox
+                  className="size-6.5 rounded-full border-2 border-gray-500 data-[state=checked]:border-red-700"
+                  // onClick={() => console.log("toggle habit completion")}
+                />
                 <div className="flex w-full items-center justify-between">
                   <div className="flex flex-col gap-2">
                     <p className="cursor-pointer font-semibold hover:text-red-700">
@@ -63,12 +66,14 @@ export default async function TodaysHabits() {
                       <span className="rounded bg-pink-600 px-2 py-0.5 text-xs text-white">
                         {habit.category}
                       </span>
-                      {/* TODO: change to the streak */}
-                      <p>{habit.reminder}</p>
+                      <div className="ml-1.5 flex items-center gap-1">
+                        <Clock className="h-4 w-4" /> {habit.reminder}
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Flame className="h-5 w-5 text-red-700" />
+                    {/* <Flame className="h-5 w-5 text-red-700" /> */}
+                    <Target className="h-5 w-5 text-red-700" />
                     <span>{habit.target}</span>
                   </div>
                 </div>

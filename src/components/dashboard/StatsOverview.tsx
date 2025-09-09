@@ -7,8 +7,29 @@ import {
   CardContent,
 } from "../ui/card";
 import { Progress } from "../ui/progress";
+import { auth } from "@clerk/nextjs/server";
+import { db } from "@/db";
+import { HabitsTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
 
-export default function StatsOverview() {
+export default async function StatsOverview() {
+  const { userId } = await auth();
+
+  if (!userId) redirect("/sign-up");
+
+  const habits = await db
+    .select()
+    .from(HabitsTable)
+    .where(eq(HabitsTable.userId, userId));
+
+  console.log("habits length", habits.length);
+
+  // toggle completed status
+  function toggleHabit() {
+    
+  }
+
   return (
     <div className="grid grid-cols-1 gap-8 px-20 py-10 md:grid-cols-2 lg:grid-cols-4">
       <Card className="bg-red-100/85">

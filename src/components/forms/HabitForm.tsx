@@ -62,9 +62,9 @@ export default function HabitForm({ habit }: { habit?: Habit }) {
         toast.success("Habit successfully created!");
       } else {
         await editHabit(habit.id, values);
+        console.log("habit edited")
         toast.success("Habit successfully edited!");
       }
-      console.log("Habit Added Successfully!");
     } catch (error) {
       toast.error("Failed to Create habit");
     }

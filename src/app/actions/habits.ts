@@ -5,20 +5,30 @@ import z from "zod";
 import { auth } from "@clerk/nextjs/server";
 import { HabitsTable } from "@/db/schema";
 import { db } from "@/db";
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
+import { createCalendarEventForHabit } from "./googleCalendar";
 
 export async function createNewHabit(
   values: z.infer<typeof newHabitFormSchema>,
 ) {
   const { userId } = await auth();
 
-  if (!userId) {
-    throw new Error("User not authenticated");
-  }
+  if (!userId) throw new Error("User not authenticated");
 
   try {
-    await db.insert(HabitsTable).values({ ...values, userId });
+    const habit = await db
+      .insert(HabitsTable)
+      .values({ ...values, userId })
+      .returning(); // .returning inserts the row and gets it back where we can store that value
+
+    // Push to Google Calendar
+    await createCalendarEventForHabit(userId, {
+      name: habit[0].name,
+      reminder: habit[0].reminder,
+    });
+
+    return habit;
   } catch (error) {
     throw new Error("Habit failed to add");
   }
@@ -46,3 +56,5 @@ export async function deleteHabit(habitId: string) {
 
   redirect("/dashboard");
 }
+
+
