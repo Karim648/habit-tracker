@@ -12,11 +12,6 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-const createdAt = timestamp("created_at").defaultNow();
-const updatedAt = timestamp("updated_at")
-  .defaultNow()
-  .$onUpdate(() => new Date());
-
 export const UsersTable = pgTable(
   "users",
   {
@@ -24,10 +19,14 @@ export const UsersTable = pgTable(
     name: varchar("name", { length: 255 }).notNull(),
     email: varchar("email", { length: 255 }).notNull().unique(),
     clerkUserId: text("clerk_user_id").notNull().unique(),
-    createdAt,
-    updatedAt,
+    createdAt: timestamp("created_at").defaultNow(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => new Date()),
   },
-  (table) => index("clerk_user_id_index").on(table.clerkUserId),
+  (table) => ({
+    clerkUserIdIndex: index("clerk_user_id_index").on(table.clerkUserId),
+  }),
 );
 
 export const userRelations = relations(UsersTable, ({ many }) => ({
@@ -45,14 +44,16 @@ export const HabitsTable = pgTable("habits", {
     .notNull()
     .references(() => UsersTable.clerkUserId, { onDelete: "cascade" }),
   name: varchar("name", { length: 255 }).notNull(),
-  description: text(),
+  description: text("description"),
   category: categoryEnum("category").notNull(),
-  frequency: frequencyEnum().notNull().default("Daily"),
+  frequency: frequencyEnum("frequency").notNull().default("Daily"),
   isCompleted: boolean("is_completed").notNull().default(false),
-  target: integer().notNull().default(1),
-  reminder: varchar({ length: 255 }).notNull(),
-  createdAt,
-  updatedAt,
+  target: integer("target").notNull().default(1),
+  reminder: varchar("reminder", { length: 255 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date()),
 });
 
 export const habitRelations = relations(HabitsTable, ({ one }) => ({

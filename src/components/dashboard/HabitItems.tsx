@@ -17,8 +17,11 @@ import { HabitsTable } from "@/db/schema";
 
 type Habit = InferSelectModel<typeof HabitsTable>;
 
-export default function HabitItems(habits: Habit) {
-    const {}
+interface HabitItemsProps {
+  habits: Habit[];
+}
+
+export default function HabitItems({ habits }: HabitItemsProps) {
   return (
     <Card className="bg-red-100/45">
       <CardHeader>

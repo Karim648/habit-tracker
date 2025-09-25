@@ -8,6 +8,6 @@ export const newHabitFormSchema = z.object({
   description: z.string().optional(),
   category: z.enum(Categories),
   frequency: z.enum(Frequencies),
-  target: z.coerce.number().int().min(1, "Must be at least 1").default(1),
+  target: z.number().int().min(1, "Must be at least 1"),
   reminder: z.string().regex(timeRegex, "Must be in HH:MM format"),
 });

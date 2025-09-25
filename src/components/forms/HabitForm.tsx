@@ -26,8 +26,6 @@ import {
 import CategoryGroup from "./CategoryGroup";
 import { createNewHabit, deleteHabit, editHabit } from "@/app/actions/habits";
 import { toast } from "sonner";
-import { InferSelectModel } from "drizzle-orm";
-import { HabitsTable } from "@/db/schema";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -40,7 +38,19 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 
-type Habit = InferSelectModel<typeof HabitsTable>;
+type Habit = {
+  id: string;
+  name: string;
+  description?: string | null;
+  category: "Health" | "Fitness" | "Personal" | "Home" | "Social";
+  frequency: "Daily" | "Weekly" | "Monthly";
+  target: number;
+  reminder: string;
+  userId: string;
+  isCompleted: boolean;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+};
 
 export default function HabitForm({ habit }: { habit?: Habit }) {
   const form = useForm<z.infer<typeof newHabitFormSchema>>({
@@ -48,7 +58,7 @@ export default function HabitForm({ habit }: { habit?: Habit }) {
     defaultValues: {
       name: habit?.name || "",
       description: habit?.description || "",
-      target: habit?.target || 1,
+      target: (habit?.target as number) || 1,
       reminder: habit?.reminder || "09:00",
       category: habit?.category,
       frequency: habit?.frequency || "Daily",
@@ -62,7 +72,7 @@ export default function HabitForm({ habit }: { habit?: Habit }) {
         toast.success("Habit successfully created!");
       } else {
         await editHabit(habit.id, values);
-        console.log("habit edited")
+        console.log("habit edited");
         toast.success("Habit successfully edited!");
       }
     } catch (error) {
