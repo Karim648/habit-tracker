@@ -21,7 +21,6 @@ export default async function TodaysHabits() {
 
   if (!userId) {
     redirect("/sign-in");
-    return new Error("User not authenticated");
   }
 
   let habits = [];
